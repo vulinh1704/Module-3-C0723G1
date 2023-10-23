@@ -56,6 +56,7 @@
         height: 100%;
         float: left;
         margin: 0 5px;
+        overflow: auto;
     }
 
     .body .ads {
@@ -109,50 +110,42 @@
     }
 
 
-    .menu {
-        width: 80%;
-        height: 100%;
-        float: left;
+    @media only screen and (max-width: 1000px) {
+        .body .side-bar {
+            display: none;
+        }
+
+        .body .ads {
+            width:  calc(35% - 4px - 10px);;
+        }
+
+        .item {
+            width: calc(100%/2 - 6px - 6px);
+        }
     }
 
-    .menu ul li {
-        list-style: none;
-        float: left;
-        margin: 0 10px;
-        color: blue;
-        border-right: 2px solid black;
-        padding-right: 10px;
-    }
-    .search {
-        width: 10%;
-        height: 100%;
-        float: left;
-        padding-top: 15px;
-        padding-left: 100px;
-    }
-    .search input {
-        border-radius: 50px;
+
+    @media only screen and (max-width: 700px) {
+        .body .ads {
+            display: none;
+        }
+
+
+        .body .main {
+            width: 100%;
+        }
+
+        .item {
+            width: 100%;
+        }
     }
 </style>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
 <body>
 <div class="header">
     <div class="logo"></div>
     <div class="banner"></div>
 </div>
 <div class="nav-bar">
-    <div class="menu">
-        <ul>
-            <li>Home</li>
-            <li>Students</li>
-            <li>Course</li>
-            <li>About Us</li>
-            <li>Contact Us</li>
-        </ul>
-    </div>
-    <div class="search">
-        <input type="text" placeholder="&#xF002; Search" style="font-family:Arial, FontAwesome" />
-    </div>
 </div>
 <div class="body">
     <div class="side-bar">
