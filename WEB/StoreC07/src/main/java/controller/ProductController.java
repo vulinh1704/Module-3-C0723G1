@@ -12,7 +12,7 @@ import java.util.List;
 
 @WebServlet(name = "ProductController", value = "/products")
 public class ProductController extends HttpServlet {
-    private IService<Product> productIService = new ProductService();
+    private ProductService productIService = new ProductService();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -27,10 +27,22 @@ public class ProductController extends HttpServlet {
             case "delete":
                 delete(request, response);
                 break;
+            case "update":
+                showFormUpdate(request, response);
+                break;
             default:
                 showError(request, response);
                 break;
         }
+    }
+
+    private void showFormUpdate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        request.setAttribute("id", id);
+        Product productEdit = productIService.findProductById(id);
+        request.setAttribute("product", productEdit);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("products/update.jsp");
+        dispatcher.forward(request, response);
     }
 
     public void delete(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -67,12 +79,11 @@ public class ProductController extends HttpServlet {
     }
 
     public void addProduct(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        int id = Integer.parseInt(request.getParameter("id"));
         String name = request.getParameter("name");
         double price = Double.parseDouble(request.getParameter("price"));
         String image = request.getParameter("image");
         int quantity = Integer.parseInt(request.getParameter("quantity"));
-        Product product = new Product(id, name, quantity, price, image);
+        Product product = new Product(name, quantity, price, image);
         productIService.add(product);
         response.sendRedirect("/products?action=home");
     }

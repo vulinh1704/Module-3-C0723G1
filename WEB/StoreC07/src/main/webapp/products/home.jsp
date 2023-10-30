@@ -42,7 +42,7 @@ Danh sách sản phẩm
             <td>${item.price}</td>
             <td>${item.quantity}</td>
             <td><img src="${item.image}" alt=""></td>
-            <td><button>Edit</button></td>
+            <td><button><a href="http://localhost:8080/products?action=update&id=${item.id}">Edit</a></button></td>
             <td><button onclick="confirm(`Are you ok ?`)"><a href="http://localhost:8080/products?action=delete&id=${item.id}">Delete</a></button></td>
         </tr>
     </c:forEach>

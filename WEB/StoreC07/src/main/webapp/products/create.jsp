@@ -13,7 +13,6 @@
 <body>
 
 <form action="http://localhost:8080/products?action=create" method="post">
-    <input type="text" name="id" placeholder="id">
     <input type="text" name="name" placeholder="name">
     <input type="text" name="quantity" placeholder="quantity">
     <input type="text" name="price" placeholder="price">
